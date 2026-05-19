@@ -1,14 +1,28 @@
 import { Skill } from "../skills/Skill";
-export function SkillsList({ skills, ontoggle, onDelete }) {
-  if (skills.length === 0) {
-    return <p>Aucune tâche à afficher.</p>;
-  }
+import { useAppStore } from "../../../store/useAppStore";
+import { FormAddSkills } from "../form-add-skills/FormAddSkills";
+import { useState } from "react";
+
+export function SkillsList({ themeId }) {
+  const getSkillsByTheme = useAppStore((s) => s.getSkillsByTheme);
+  const skills = getSkillsByTheme(themeId);
+  const [showForm, setShowForm] = useState(false);
 
   return (
-    <div className="skill-list">
-      {skills.maps((skill) => (
-        <Skill key={skill.id} ontoggle={ontoggle} onDelete={onDelete} />
-      ))}
-    </div>
+    <>
+      <div className="skill-list">
+        {skills.length === 0 ? (
+          <p>Aucune compétence pour ce thème.</p>
+        ) : (
+          skills.map((skill) => <Skill key={skill.id} skill={skill} />)
+        )}
+        <button className="add-btn" onClick={() => setShowForm(!showForm)}>
+          Ajouter une compétence
+        </button>
+      </div>
+      {showForm && (
+        <FormAddSkills themeId={themeId} onClose={() => setShowForm(false)} />
+      )}
+    </>
   );
 }
