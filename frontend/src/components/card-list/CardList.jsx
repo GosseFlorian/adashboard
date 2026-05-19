@@ -1,10 +1,13 @@
+import { useAppStore } from "../../../store/useAppStore";
 import { Card } from "../cards/Card";
 
-export function CardList({ cards }) {
+export function CardList() {
+  const themes = useAppStore((t) => t.themes);
+
   return (
     <div className="theme-list">
-      {cards.maps((card) => (
-        <Card key={card.id} theme={card} />
+      {themes.map((theme) => (
+        <Card key={theme.id} theme={theme} />
       ))}
     </div>
   );
