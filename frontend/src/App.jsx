@@ -1,14 +1,20 @@
 // import { useState } from 'react'
 import "./App.css";
 import { CardList } from "./components/card-list/CardList";
-import { SkillsList } from "./components/skills-list/SkillsList";
-import { Card } from "./components/cards/Card";
+import { useAppStore } from "../store/useAppStore";
+import { useEffect } from "react";
 
 function App() {
+  const loadData = useAppStore((s) => s.loadData);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
   return (
     <>
       <h1>Hello</h1>
-      <Card theme="JavaScript" />
+      <CardList />
     </>
   );
 }
