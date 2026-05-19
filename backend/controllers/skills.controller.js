@@ -29,17 +29,16 @@ export async function getSkillById(req, res) {
 
 export async function createSkill(req, res) {
   try {
-    const { name } = req.body;
-
-    if (!name || typeof name !== "string") {
+    const { description, theme_id, is_done = false } = req.body;
+    if (!description || typeof description !== "string") {
       return res
         .status(400)
-        .json({ error: "Le champ name est requis (string)" });
+        .json({ error: "Le champ description est requis (string)" });
     }
 
     const result = await pool.query(
-      "INSERT INTO skills (name) VALUES ($1) RETURNING *",
-      [name],
+      "INSERT INTO skills (description, theme_id, is_done) VALUES ($1, $2, $3) RETURNING *",
+      [description, theme_id, is_done],
     );
 
     res.status(201).json(result.rows[0]);
@@ -52,17 +51,11 @@ export async function createSkill(req, res) {
 export async function updateSkill(req, res) {
   try {
     const { id } = req.params;
-    const { name } = req.body;
-
-    if (!name || typeof name !== "string") {
-      return res
-        .status(400)
-        .json({ error: "Le champ name est requis (string)" });
-    }
+    const { description, is_done } = req.body;
 
     const result = await pool.query(
-      "UPDATE skills SET name = $1 WHERE id = $2 RETURNING *",
-      [name, id],
+      "UPDATE skills SET description = COALESCE($1, description), is_done = COALESCE($2, is_done) WHERE id = $3 RETURNING *",
+      [description ?? null, is_done ?? null, id],
     );
 
     if (result.rowCount === 0) {
