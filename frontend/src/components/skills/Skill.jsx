@@ -1,9 +1,15 @@
-export function Skill({ skill, ontoggle, onDelete }) {
+import { useAppStore } from "../../../store/useAppStore";
+import "./Skill.css";
+
+export function Skill({ skill }) {
+  const { toggleSkill, deleteSkill } = useAppStore();
   return (
-    <>
-      <button onClick={ontoggle(skill.id)}>{skill.is_done ? "x" : ""}</button>
+    <div className="skill">
+      <button onClick={() => toggleSkill(skill.id)}>
+        {skill.is_done ? "x" : ""}
+      </button>
       <p>{skill.description}</p>
-      <button onClick={onDelete(skill.id)}>Supprimer</button>
-    </>
+      <button onClick={() => deleteSkill(skill.id)}>Supprimer</button>
+    </div>
   );
 }
