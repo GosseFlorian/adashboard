@@ -11,16 +11,14 @@ export function SkillsList({ themeId }) {
 
   return (
     <>
-      <div className="skill-list">
-        {skills.length === 0 ? (
-          <p>Aucune compétence pour ce thème.</p>
-        ) : (
-          skills.map((skill) => <Skill key={skill.id} skill={skill} />)
-        )}
-        <button className="add-btn" onClick={() => setShowForm(!showForm)}>
-          Ajouter une compétence
-        </button>
-      </div>
+      {skills.length === 0 ? (
+        <p>Aucune compétence pour ce thème.</p>
+      ) : (
+        skills.map((skill) => <Skill key={skill.id} skill={skill} />)
+      )}
+      <button className="add-btn" onClick={() => setShowForm(!showForm)}>
+        Ajouter une compétence
+      </button>
       {showForm && (
         <FormAddSkills themeId={themeId} onClose={() => setShowForm(false)} />
       )}
