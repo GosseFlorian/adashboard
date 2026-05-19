@@ -4,8 +4,9 @@ import { FormAddSkills } from "../form-add-skills/FormAddSkills";
 import { useState } from "react";
 
 export function SkillsList({ themeId }) {
-  const getSkillsByTheme = useAppStore((s) => s.getSkillsByTheme);
-  const skills = getSkillsByTheme(themeId);
+  const allSkills = useAppStore((s) => s.skills);
+  const skills = allSkills.filter((sk) => sk.theme_id === themeId);
+
   const [showForm, setShowForm] = useState(false);
 
   return (

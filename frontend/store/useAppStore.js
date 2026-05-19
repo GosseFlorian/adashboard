@@ -25,10 +25,6 @@ export const useAppStore = create((set, get) => ({
     return Math.round((done / themeSkills.length) * 100);
   },
 
-  getSkillsByTheme: (themeId) => {
-    return get().skills.filter((s) => s.theme_id === themeId);
-  },
-
   // --- POST /skills ---
   addSkill: async (description, themeId, isDone) => {
     try {
