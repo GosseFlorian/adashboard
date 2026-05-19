@@ -8,12 +8,14 @@ export function Card({ theme }) {
   const progress = getProgressForTheme(theme.id);
 
   return (
-    <>
-      <div className="card">
+    <div className="card">
+      <div className="header-card">
         <h2>{theme.name}</h2>
         <ProgressBar labelAlignment="left" completed={progress} />
+      </div>
+      <div className="skill-list hide">
         <SkillsList themeId={theme.id} />
       </div>
-    </>
+    </div>
   );
 }
