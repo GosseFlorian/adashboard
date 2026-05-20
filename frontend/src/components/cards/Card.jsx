@@ -22,7 +22,7 @@ export function Card({ theme }) {
       <div className="theme-card-header" onClick={() => toggleTheme(theme.id)}>
         <div className="theme-card-left-header">
           <h2 className="theme-name">{theme.name}</h2>
-          <div class={`arrow ${isSelected ? "rotate" : ""}`}>↑</div>
+          <div class={`arrow ${isSelected ? "rotate" : ""}`}>↓</div>
         </div>
         <ProgressBar labelAlignment="left" completed={progress} />
       </div>
