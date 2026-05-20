@@ -5,6 +5,8 @@ import "./Card.css";
 
 export function Card({ theme }) {
   const allSkills = useAppStore((s) => s.skills);
+  const selectedThemeId = useAppStore((s) => s.selectedThemeId);
+  const toggleTheme = useAppStore((s) => s.toggleTheme);
   const skills = allSkills.filter((s) => s.theme_id === theme.id);
   const progress =
     skills.length === 0
@@ -13,15 +15,19 @@ export function Card({ theme }) {
           (skills.filter((s) => s.is_done).length / skills.length) * 100,
         );
 
+  const isSelected = selectedThemeId === theme.id;
+
   return (
-    <div className="card">
-      <div className="header-card">
+    <div
+      className={`card ${isSelected ? "select" : ""}`}
+      style={{ cursor: "pointer" }}
+    >
+      <div onClick={() => toggleTheme(theme.id)}>
         <h2>{theme.name}</h2>
         <ProgressBar labelAlignment="left" completed={progress} />
       </div>
-      <div className="skill-list hide">
-        <SkillsList themeId={theme.id} />
-      </div>
+
+      {isSelected && <SkillsList themeId={theme.id} />}
     </div>
   );
 }

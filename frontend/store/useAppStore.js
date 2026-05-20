@@ -3,6 +3,7 @@ import { create } from "zustand";
 export const useAppStore = create((set, get) => ({
   themes: [],
   skills: [],
+  selectedThemeId: null,
 
   // --- GET /themes et GET /skills ---
   loadData: async () => {
@@ -15,6 +16,11 @@ export const useAppStore = create((set, get) => ({
     } catch (err) {
       set({ error: err.message });
     }
+  },
+
+  toggleTheme: (themeId) => {
+    const current = get().selectedThemeId;
+    set({ selectedThemeId: current === themeId ? null : themeId });
   },
 
   // --- POST /skills ---
