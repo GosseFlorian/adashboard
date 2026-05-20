@@ -1,13 +1,11 @@
 import { Skill } from "../skills/Skill";
 import { useAppStore } from "../../../store/useAppStore";
 import { FormAddSkills } from "../form-add-skills/FormAddSkills";
-import { useState } from "react";
 
 export function SkillsList({ themeId }) {
   const allSkills = useAppStore((s) => s.skills);
+  const openForm = useAppStore((s) => s.openForm);
   const skills = allSkills.filter((sk) => sk.theme_id === themeId);
-
-  const [showForm, setShowForm] = useState(false);
 
   return (
     <>
@@ -18,12 +16,9 @@ export function SkillsList({ themeId }) {
           skills.map((skill) => <Skill key={skill.id} skill={skill} />)
         )}
       </div>
-      <button className="add-btn" onClick={() => setShowForm(!showForm)}>
+      <button className="add-btn" onClick={() => openForm(themeId)}>
         Ajouter une compétence
       </button>
-      {showForm && (
-        <FormAddSkills themeId={themeId} onClose={() => setShowForm(false)} />
-      )}
     </>
   );
 }

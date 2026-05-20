@@ -4,6 +4,7 @@ export const useAppStore = create((set, get) => ({
   themes: [],
   skills: [],
   selectedThemeId: null,
+  showFormForTheme: null,
 
   // --- GET /themes et GET /skills ---
   loadData: async () => {
@@ -22,6 +23,10 @@ export const useAppStore = create((set, get) => ({
     const current = get().selectedThemeId;
     set({ selectedThemeId: current === themeId ? null : themeId });
   },
+
+  openForm: (themeId) => set({ showFormForTheme: themeId }),
+
+  closeForm: () => set({ showFormForTheme: null }),
 
   // --- POST /skills ---
   addSkill: async (description, themeId, isDone) => {
