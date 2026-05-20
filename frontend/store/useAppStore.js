@@ -17,14 +17,6 @@ export const useAppStore = create((set, get) => ({
     }
   },
 
-  getProgressForTheme: (themeId) => {
-    const { skills } = get();
-    const themeSkills = skills.filter((s) => s.theme_id === themeId);
-    if (themeSkills.length === 0) return 0;
-    const done = themeSkills.filter((s) => s.is_done).length;
-    return Math.round((done / themeSkills.length) * 100);
-  },
-
   // --- POST /skills ---
   addSkill: async (description, themeId, isDone) => {
     try {

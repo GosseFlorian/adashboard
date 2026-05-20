@@ -4,8 +4,14 @@ import { useAppStore } from "../../../store/useAppStore";
 import "./Card.css";
 
 export function Card({ theme }) {
-  const getProgressForTheme = useAppStore((s) => s.getProgressForTheme);
-  const progress = getProgressForTheme(theme.id);
+  const allSkills = useAppStore((s) => s.skills);
+  const skills = allSkills.filter((s) => s.theme_id === theme.id);
+  const progress =
+    skills.length === 0
+      ? 0
+      : Math.round(
+          (skills.filter((s) => s.is_done).length / skills.length) * 100,
+        );
 
   return (
     <div className="card">
