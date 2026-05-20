@@ -1,5 +1,5 @@
 import { useAppStore } from "../../../store/useAppStore";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./FormAddSkills.css";
 
 export function FormAddSkills({ themeId }) {
@@ -7,6 +7,11 @@ export function FormAddSkills({ themeId }) {
   const closeForm = useAppStore((s) => s.closeForm);
   const [description, setDescription] = useState("");
   const [isDone, setIsDone] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +29,7 @@ export function FormAddSkills({ themeId }) {
 
         <form onSubmit={handleSubmit}>
           <input
+            ref={inputRef}
             className="form-text"
             type="text"
             required
