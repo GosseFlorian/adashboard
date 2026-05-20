@@ -20,10 +20,11 @@ export function FormAddSkills({ themeId }) {
   return (
     <div className="overlay" onClick={closeForm}>
       <div className="popup" onClick={(e) => e.stopPropagation()}>
-        <h3>Ajouter une compétence</h3>
+        <h3 className="form-title">Ajouter une compétence</h3>
 
         <form onSubmit={handleSubmit}>
           <input
+            className="form-text"
             type="text"
             required
             value={description}
@@ -32,9 +33,10 @@ export function FormAddSkills({ themeId }) {
           />
 
           <div className="radio-group">
-            <p>La compétence est :</p>
-            <label>
+            <p className="radio-title">La compétence est :</p>
+            <label className="radio-input-text">
               <input
+                className="radio-input"
                 type="radio"
                 name="isDone"
                 checked={isDone === true}
@@ -42,8 +44,9 @@ export function FormAddSkills({ themeId }) {
               />
               Validée
             </label>
-            <label>
+            <label className="radio-input-text">
               <input
+                className="radio-input"
                 type="radio"
                 name="isDone"
                 checked={isDone === false}
@@ -52,10 +55,9 @@ export function FormAddSkills({ themeId }) {
               Pas validée
             </label>
           </div>
-
-          <div className="form-actions">
-            <button type="submit">Ajouter</button>
-          </div>
+          <button className="submit-btn" type="submit">
+            Ajouter
+          </button>
         </form>
       </div>
     </div>

@@ -18,12 +18,9 @@ export function Card({ theme }) {
   const isSelected = selectedThemeId === theme.id;
 
   return (
-    <div
-      className={`card ${isSelected ? "select" : ""}`}
-      style={{ cursor: "pointer" }}
-    >
-      <div onClick={() => toggleTheme(theme.id)}>
-        <h2>{theme.name}</h2>
+    <div className={`theme-card ${isSelected ? "selected" : ""}`}>
+      <div className="theme-card-header" onClick={() => toggleTheme(theme.id)}>
+        <h2 className="theme-name">{theme.name}</h2>
         <ProgressBar labelAlignment="left" completed={progress} />
       </div>
 

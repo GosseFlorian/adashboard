@@ -1,6 +1,7 @@
 import { Skill } from "../skills/Skill";
 import { useAppStore } from "../../../store/useAppStore";
 import { FormAddSkills } from "../form-add-skills/FormAddSkills";
+import "./SkillsList.css";
 
 export function SkillsList({ themeId }) {
   const allSkills = useAppStore((s) => s.skills);
@@ -9,14 +10,14 @@ export function SkillsList({ themeId }) {
 
   return (
     <>
-      <div className="skill-list">
+      <div className="skills-container">
         {skills.length === 0 ? (
           <p>Aucune compétence pour ce thème.</p>
         ) : (
           skills.map((skill) => <Skill key={skill.id} skill={skill} />)
         )}
       </div>
-      <button className="add-btn" onClick={() => openForm(themeId)}>
+      <button className="add-skill-btn" onClick={() => openForm(themeId)}>
         Ajouter une compétence
       </button>
     </>

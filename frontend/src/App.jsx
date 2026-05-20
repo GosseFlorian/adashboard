@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <h1>Adashboard</h1>
+      <h1 className="main-title">Adashboard</h1>
       <CardList />
       {showFormForTheme !== null && (
         <FormAddSkills themeId={showFormForTheme} />
