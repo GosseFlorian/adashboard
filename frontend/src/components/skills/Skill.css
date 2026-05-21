@@ -1,3 +1,28 @@
-.skill {
+.skill-card {
   display: flex;
+  align-items: center;
+  margin: var(--spacing-xs) 0;
+  .toggle-btn {
+    width: 1.6rem;
+    height: 1.6rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-xs);
+    background: var(--light-grey);
+    border: var(--border-black-s);
+    font-size: var(--font-size-button);
+  }
+  .skill-description {
+    margin: 0 var(--spacing-s);
+    font-size: var(--font-size-text);
+  }
+  .delete-btn {
+    width: 5rem;
+    height: 1.6rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-xs);
+    background: var(--light-grey);
+    border: var(--border-black-s);
+    margin-left: auto;
+    font-size: var(--font-size-button);
+  }
 }

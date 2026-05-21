@@ -1,0 +1,14 @@
+.skills-container {
+  margin: var(--spacing-xs) 0;
+}
+
+.add-skill-btn {
+  cursor: pointer;
+  height: 2rem;
+  width: 10rem;
+  border-radius: var(--border-radius-xs);
+  background: var(--white);
+  border: var(--border-black-s);
+  margin-left: auto;
+  font-size: var(--font-size-button);
+}

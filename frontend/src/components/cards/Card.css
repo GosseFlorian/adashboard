@@ -1,3 +1,39 @@
-.card {
-  border: 1px solid black;
+.theme-card {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-black-s);
+  padding: var(--spacing-s) var(--spacing-s);
+  border: var(--border-black-s);
+  border-radius: var(--border-radius-s);
+  margin: var(--spacing-s);
+}
+
+.selected {
+  background-color: var(--light-grey);
+}
+
+.theme-card-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.theme-card-left-header {
+  text-align: center;
+}
+
+.progress-bar {
+  margin-left: auto;
+}
+
+.theme-name {
+  font-size: var(--font-size-subtitle);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+.arrow.rotate {
+  transform: rotate(-180deg);
 }

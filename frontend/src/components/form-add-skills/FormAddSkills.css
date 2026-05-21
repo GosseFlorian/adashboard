@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--dark-shadow);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,8 +10,53 @@
 
 .popup {
   background: white;
-  padding: 1rem 2rem;
-  border-radius: 20px;
-  width: 250px;
+  padding: var(--spacing-s);
+  border-radius: var(--border-radius-s);
+  width: 25rem;
   text-align: center;
+}
+
+.form-title {
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-subtitle);
+}
+
+.form-text {
+  margin-bottom: var(--spacing-xs);
+  width: 100%;
+  padding: var(--spacing-xs) 0;
+  text-align: center;
+  border-radius: var(--border-radius-xs);
+  border: var(--border-black-s);
+}
+
+.radio-title {
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-subtitle);
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: auto;
+}
+
+.radio-input-text {
+  font-size: var(--font-size-text);
+  cursor: pointer;
+}
+
+.radio-input {
+  margin-bottom: var(--spacing-xs);
+  margin-right: var(--spacing-xs);
+}
+
+.submit-btn {
+  width: 5rem;
+  height: 1.6rem;
+  cursor: pointer;
+  border-radius: var(--border-radius-xs);
+  background: var(--light-grey);
+  border: var(--border-black-s);
+  font-size: var(--font-size-button);
 }
