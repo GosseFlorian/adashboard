@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Times New Roman", Times, sans-serif;
+  font-size: 1em;
+  /* color */
+  --dark-shadow: rgb(0, 0, 0, 0.6);
+  --light-grey: rgba(248, 248, 248);
+  --black: black;
+  --white: white;
+
+  /* font */
+  --font-size-button: 0.8rem;
+  --font-size-text: 1rem;
+  --font-size-subtitle: 1.1rem;
+  --font-size-title: 3rem;
+
+  /* spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-s: 1rem;
+  --spacing-m: 1.5rem;
+
+  /* border/border-radius */
+  --border-black-s: 1px solid black;
+  --border-radius-xs: 0.5rem;
+  --border-radius-s: 1rem;
+  --border-radius-m: 1.5rem;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#root {
+  margin: var(--spacing-s);
+  padding: var(--spacing-s);
+  border: var(--border-black-s);
+  border-radius: var(--border-radius-m);
+  width: 50%;
+  min-width: 35rem;
+}
