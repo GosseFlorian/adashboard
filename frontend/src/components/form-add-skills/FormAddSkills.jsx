@@ -38,8 +38,8 @@ export function FormAddSkills({ themeId }) {
             placeholder="Je sais..."
           />
 
+          <p className="radio-title">La compétence est :</p>
           <div className="radio-group">
-            <p className="radio-title">La compétence est :</p>
             <label className="radio-input-text">
               <input
                 className="radio-input"
