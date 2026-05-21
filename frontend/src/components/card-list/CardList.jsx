@@ -1,6 +1,5 @@
 import { useAppStore } from "../../../store/useAppStore";
 import { Card } from "../cards/Card";
-import "./CardList.css";
 
 export function CardList() {
   const themes = useAppStore((t) => t.themes);
