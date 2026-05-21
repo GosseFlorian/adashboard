@@ -24,7 +24,15 @@ export function Card({ theme }) {
           <h2 className="theme-name">{theme.name}</h2>
           <div class={`arrow ${isSelected ? "rotate" : ""}`}>↓</div>
         </div>
-        <ProgressBar labelAlignment="left" completed={progress} />
+        <ProgressBar
+          className="progress-bar"
+          height="2rem"
+          width="10rem"
+          borderRadius="var(--border-radius-xs)"
+          baseBgColor="var(--black)"
+          labelAlignment="left"
+          completed={progress}
+        />
       </div>
 
       {isSelected && <SkillsList themeId={theme.id} />}
