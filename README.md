@@ -1,16 +1,142 @@
-# React + Vite
+# Adashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un tableau de bord personnel pour suivre sa progression dans l'apprentissage de compétences techniques. Les compétences sont organisées par thèmes (JavaScript, React, PostgreSQL, etc.) et peuvent être marquées comme acquises ou en cours.
 
-Currently, two official plugins are available:
+## Aperçu
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Adashboard est une application fullstack permettant de :
 
-## React Compiler
+- Visualiser ses compétences regroupées par thème sous forme de cartes
+- Ajouter de nouvelles compétences à un thème existant
+- Marquer une compétence comme acquise ou non (toggle)
+- Supprimer une compétence
+- Suivre sa progression grâce à une barre de progression par thème
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack technique
 
-## Expanding the ESLint configuration
+**Frontend**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19 + Vite
+- Zustand (gestion d'état global)
+- @ramonak/react-progress-bar
+
+**Backend**
+
+- Node.js + Express 5
+- PostgreSQL (driver `pg`)
+- dotenv, cors, nodemon
+
+## Structure du projet
+
+```
+adashboard/
+├── backend/
+│   ├── controllers/
+│   │   ├── skills.controller.js
+│   │   └── themes.controller.js
+│   ├── db/
+│   │   └── client.js
+│   ├── routes/
+│   │   ├── skills.routes.js
+│   │   └── themes.routes.js
+│   ├── SQL/
+│   │   ├── db_up.sql     # Création des tables
+│   │   └── seed.sql      # Données initiales
+│   └── index.js
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   │   ├── card-list/
+    │   │   ├── cards/
+    │   │   ├── form-add-skills/
+    │   │   ├── skills/
+    │   │   └── skills-list/
+    │   └── App.jsx
+    └── store/
+        └── useAppStore.js
+```
+
+## Prérequis
+
+- Node.js ≥ 18
+- PostgreSQL ≥ 14
+- npm
+
+## Installation et lancement
+
+### 1. Base de données
+
+Créer une base de données PostgreSQL, puis exécuter les scripts SQL dans l'ordre :
+
+```sql
+-- Création des tables
+\i backend/SQL/db_up.sql
+
+-- Données de départ (optionnel)
+\i backend/SQL/seed.sql
+```
+
+### 2. Backend
+
+```bash
+cd backend
+```
+
+Créer un fichier `.env` à la racine du dossier `backend` :
+
+```env
+PORT=3000
+PGHOST=localhost
+PGPORT=5432
+PGUSER=votre_utilisateur
+PGPASSWORD=votre_mot_de_passe
+PGDATABASE=votre_base
+```
+
+Installer les dépendances et démarrer :
+
+```bash
+npm install
+npm run dev
+```
+
+Le serveur écoute sur `http://localhost:3000`.
+
+### 3. Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+L'application est accessible sur `http://localhost:5173`.
+
+## API
+
+### Thèmes
+
+| Méthode | Route       | Description               |
+| ------- | ----------- | ------------------------- |
+| GET     | /themes     | Récupérer tous les thèmes |
+| GET     | /themes/:id | Récupérer un thème        |
+| POST    | /themes     | Créer un thème            |
+| PATCH   | /themes/:id | Modifier un thème         |
+| DELETE  | /themes/:id | Supprimer un thème        |
+
+### Compétences
+
+| Méthode | Route       | Description                      |
+| ------- | ----------- | -------------------------------- |
+| GET     | /skills     | Récupérer toutes les compétences |
+| GET     | /skills/:id | Récupérer une compétence         |
+| POST    | /skills     | Ajouter une compétence           |
+| PATCH   | /skills/:id | Modifier une compétence          |
+| DELETE  | /skills/:id | Supprimer une compétence         |
+
+> La suppression d'un thème entraîne la suppression en cascade de ses compétences associées.
+
+## Perspectives d'amélioration
+
+- Ajout de boutons pour créer et supprimer des thèmes directement depuis l'interface
+- Migration du codebase vers TypeScript (frontend et backend)
