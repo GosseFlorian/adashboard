@@ -1,6 +1,25 @@
 import { create } from "zustand";
+import type { Theme, Skill } from "../src/types";
 
-export const useAppStore = create((set, get) => ({
+interface AppState {
+  themes: Theme[];
+  skills: Skill[];
+  selectedThemeId: number | null;
+  showFormForTheme: number | null;
+  loadData: () => Promise<void>;
+  toggleTheme: (themeId: number) => void;
+  openForm: (themeId: number) => void;
+  closeForm: () => void;
+  addSkill: (
+    description: string,
+    themeId: number,
+    isDone: boolean,
+  ) => Promise<void>;
+  toggleSkill: (id: number) => Promise<void>;
+  deleteSkill: (id: number) => Promise<void>;
+}
+
+export const useAppStore = create<AppState>((set, get) => ({
   themes: [],
   skills: [],
   selectedThemeId: null,
@@ -15,7 +34,7 @@ export const useAppStore = create((set, get) => ({
       ]);
       set({ themes, skills });
     } catch (err) {
-      set({ error: err.message });
+      console.error("Erreur chargement des données:", err);
     }
   },
 
@@ -29,7 +48,7 @@ export const useAppStore = create((set, get) => ({
   closeForm: () => set({ showFormForTheme: null }),
 
   // --- POST /skills ---
-  addSkill: async (description, themeId, isDone) => {
+  addSkill: async (description: string, themeId: number, isDone: boolean) => {
     try {
       const response = await fetch("http://localhost:3000/skills", {
         method: "POST",
@@ -48,7 +67,7 @@ export const useAppStore = create((set, get) => ({
   },
 
   // --- PATCH /skills/:id ---
-  toggleSkill: async (id) => {
+  toggleSkill: async (id: number) => {
     try {
       const skill = get().skills.find((s) => s.id === id);
       if (!skill) return;
@@ -71,7 +90,7 @@ export const useAppStore = create((set, get) => ({
   },
 
   // --- DELETE /skills/:id ---
-  deleteSkill: async (id) => {
+  deleteSkill: async (id: number) => {
     try {
       await fetch(`http://localhost:3000/skills/${id}`, {
         method: "DELETE",

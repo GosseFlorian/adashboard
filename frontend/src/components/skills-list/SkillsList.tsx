@@ -1,9 +1,12 @@
 import { Skill } from "../skills/Skill";
 import { useAppStore } from "../../../store/useAppStore";
-import { FormAddSkills } from "../form-add-skills/FormAddSkills";
 import "./SkillsList.css";
 
-export function SkillsList({ themeId }) {
+interface SkillsListProps {
+  themeId: number;
+}
+
+export function SkillsList({ themeId }: SkillsListProps) {
   const allSkills = useAppStore((s) => s.skills);
   const openForm = useAppStore((s) => s.openForm);
   const skills = allSkills.filter((sk) => sk.theme_id === themeId);

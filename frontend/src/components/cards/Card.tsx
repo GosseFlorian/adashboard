@@ -1,9 +1,14 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 import { SkillsList } from "../skills-list/SkillsList";
 import { useAppStore } from "../../../store/useAppStore";
+import type { Theme } from "../../types";
 import "./Card.css";
 
-export function Card({ theme }) {
+interface CardProps {
+  theme: Theme;
+}
+
+export function Card({ theme }: CardProps) {
   const allSkills = useAppStore((s) => s.skills);
   const selectedThemeId = useAppStore((s) => s.selectedThemeId);
   const toggleTheme = useAppStore((s) => s.toggleTheme);
@@ -22,7 +27,7 @@ export function Card({ theme }) {
       <div className="theme-card-header" onClick={() => toggleTheme(theme.id)}>
         <div className="theme-card-left-header">
           <h2 className="theme-name">{theme.name}</h2>
-          <div class={`arrow ${isSelected ? "rotate" : ""}`}>↓</div>
+          <div className={`arrow ${isSelected ? "rotate" : ""}`}>↓</div>
         </div>
         <ProgressBar
           className="progress-bar"

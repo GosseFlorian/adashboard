@@ -1,7 +1,12 @@
 import { useAppStore } from "../../../store/useAppStore";
+import type { Skill as SkillType } from "../../types";
 import "./Skill.css";
 
-export function Skill({ skill }) {
+interface SkillProps {
+  skill: SkillType;
+}
+
+export function Skill({ skill }: SkillProps) {
   const { toggleSkill, deleteSkill } = useAppStore();
   return (
     <div className="skill-card">

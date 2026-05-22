@@ -2,18 +2,22 @@ import { useAppStore } from "../../../store/useAppStore";
 import { useState, useRef, useEffect } from "react";
 import "./FormAddSkills.css";
 
-export function FormAddSkills({ themeId }) {
+interface FormAddSkillsProps {
+  themeId: number;
+}
+
+export function FormAddSkills({ themeId }: FormAddSkillsProps) {
   const addSkill = useAppStore((s) => s.addSkill);
   const closeForm = useAppStore((s) => s.closeForm);
-  const [description, setDescription] = useState("");
-  const [isDone, setIsDone] = useState(false);
-  const inputRef = useRef(null);
+  const [description, setDescription] = useState<string>("");
+  const [isDone, setIsDone] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!description.trim()) return;
     await addSkill(description, themeId, isDone);
