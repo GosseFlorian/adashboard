@@ -33,7 +33,7 @@ export async function getThemeById(req: Request, res: Response) {
 
 export async function createTheme(req: Request, res: Response) {
   try {
-    const { name } = req.body;
+    const { name } = req.body as { name: string };
 
     if (!name || typeof name !== "string") {
       return res
@@ -56,7 +56,7 @@ export async function createTheme(req: Request, res: Response) {
 export async function updateTheme(req: Request, res: Response) {
   try {
     const { id } = req.params;
-    const { name } = req.body;
+    const { name } = req.body as { name: string };
 
     if (!name || typeof name !== "string") {
       return res

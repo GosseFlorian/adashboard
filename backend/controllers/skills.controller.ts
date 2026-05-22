@@ -33,7 +33,11 @@ export async function getSkillById(req: Request, res: Response) {
 
 export async function createSkill(req: Request, res: Response) {
   try {
-    const { description, theme_id, is_done = false } = req.body;
+    const { description, theme_id, is_done } = req.body as {
+      description: string;
+      theme_id: number;
+      is_done: boolean;
+    };
     if (!description || typeof description !== "string") {
       return res
         .status(400)
@@ -55,7 +59,10 @@ export async function createSkill(req: Request, res: Response) {
 export async function updateSkill(req: Request, res: Response) {
   try {
     const { id } = req.params;
-    const { description, is_done } = req.body;
+    const { description, is_done } = req.body as {
+      description?: string;
+      is_done?: boolean;
+    };
 
     const result = await pool.query<Skill>(
       "UPDATE skills SET description = COALESCE($1, description), is_done = COALESCE($2, is_done) WHERE id = $3 RETURNING *",
