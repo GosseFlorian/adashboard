@@ -17,14 +17,16 @@ Adashboard est une application fullstack permettant de :
 **Frontend**
 
 - React 19 + Vite
+- TypeScript
 - Zustand (gestion d'état global)
 - @ramonak/react-progress-bar
 
 **Backend**
 
 - Node.js + Express 5
+- TypeScript (exécution via `tsx`)
 - PostgreSQL (driver `pg`)
-- dotenv, cors, nodemon
+- dotenv, cors
 
 ## Structure du projet
 
@@ -32,17 +34,18 @@ Adashboard est une application fullstack permettant de :
 adashboard/
 ├── backend/
 │   ├── controllers/
-│   │   ├── skills.controller.js
-│   │   └── themes.controller.js
+│   │   ├── skills.controller.ts
+│   │   └── themes.controller.ts
 │   ├── db/
-│   │   └── client.js
+│   │   └── client.ts
 │   ├── routes/
-│   │   ├── skills.routes.js
-│   │   └── themes.routes.js
+│   │   ├── skills.routes.ts
+│   │   └── themes.routes.ts
 │   ├── SQL/
 │   │   ├── db_up.sql     # Création des tables
 │   │   └── seed.sql      # Données initiales
-│   └── index.js
+│   ├── types.ts
+│   └── index.ts
 └── frontend/
     ├── src/
     │   ├── components/
@@ -51,9 +54,10 @@ adashboard/
     │   │   ├── form-add-skills/
     │   │   ├── skills/
     │   │   └── skills-list/
-    │   └── App.jsx
+    │   ├── types.ts
+    │   └── App.tsx
     └── store/
-        └── useAppStore.js
+        └── useAppStore.ts
 ```
 
 ## Prérequis
@@ -112,6 +116,23 @@ npm run dev
 
 L'application est accessible sur `http://localhost:5173`.
 
+## Scripts disponibles
+
+**Backend**
+
+| Commande        | Description                                                  |
+| --------------- | ------------------------------------------------------------ |
+| `npm run dev`   | Lance le serveur avec rechargement automatique (`tsx watch`) |
+| `npm run build` | Compile le projet en JavaScript dans `dist/`                 |
+| `npm start`     | Lance le JS compilé (production)                             |
+
+**Frontend**
+
+| Commande        | Description                            |
+| --------------- | -------------------------------------- |
+| `npm run dev`   | Lance le serveur de développement Vite |
+| `npm run build` | Compile le projet pour la production   |
+
 ## API
 
 ### Thèmes
@@ -139,4 +160,3 @@ L'application est accessible sur `http://localhost:5173`.
 ## Perspectives d'amélioration
 
 - Ajout de boutons pour créer et supprimer des thèmes directement depuis l'interface
-- Migration du codebase vers TypeScript (frontend et backend)
