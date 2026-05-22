@@ -1,3 +1,8 @@
+CREATE TABLE themes (
+    id  SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+);
+
 CREATE TABLE skills (
     id SERIAL PRIMARY KEY,
     description VARCHAR(250),
@@ -8,9 +13,4 @@ CREATE TABLE skills (
         REFERENCES themes(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-);
-
-CREATE TABLE themes (
-    id  SERIAL PRIMARY KEY,
-    name VARCHAR(100),
 );
